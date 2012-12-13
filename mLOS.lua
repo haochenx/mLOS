@@ -1,6 +1,17 @@
--- This file tries to implement a class system in lua
+-- mLOS/mLOS.lua
+--
+-- This file tries to implement a simple class system in lua
+--
+-- This file is created by Haochen Xie on Dec. 12, 2012 and is a part
+-- of Haochen's public project, mLOS, currently hosted at
+-- <https://github.com/Haochen-Xie/mLOS>
+--
+-- For usage information, please refer to document.lua comes with the
+-- package containing this file.
 
-function classify(ct)
+mLOS = {}
+
+function mLOS.classify(ct)
    local fields = {}
    local methods = {}
 
@@ -89,7 +100,7 @@ function classify(ct)
       for k in pairs(ct.__ht.fields) do
 	 if not x[k] then return false end
       end
-      -- Check for it's ancesors
+      -- Check for its ancesors
       if ct.ancestors then
 	 for _, v in pairs(ct.ancestors) do
 	    if not v.__ht.is_instance_fields(x) then return false end
@@ -125,3 +136,4 @@ function classify(ct)
 
    setmetatable(ct, constructor_mt)
 end
+return mLOS
