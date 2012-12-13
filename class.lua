@@ -63,8 +63,7 @@ function classify(ct)
    end
 
    function constructor_mt.__call(self,...)
-      -- Load initial fields
-      local new_instance = ct.__ht.copy(fields)
+      local new_instance = {}
 
       -- Load ancestors' initial fields
       if ct.ancestors then
@@ -72,6 +71,9 @@ function classify(ct)
 	    ct.__ht.concat_table(new_instance, v.__ht.fields)
 	 end
       end
+
+      -- Load our own initial fields
+      ct.__ht.concat_table(new_instance, fields)
 
       if ct.constructor then
 	 ct.constructor(new_instance,...)
