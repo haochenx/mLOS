@@ -9,6 +9,15 @@
 -- For usage information, please refer to document.lua comes with the
 -- package containing this file.
 
+local _G = _G
+
+-- Helper function <concat_table>
+local function concat_table(a, b)
+   for k, v in pairs(b) do
+      a[k] = v
+   end
+end
+
 mLOS = {}
 
 function mLOS.classify(ct)
@@ -58,20 +67,6 @@ function mLOS.classify(ct)
       end
       return nil
    end
-   -- Helper function <copy>
-   function ct.__ht.copy(t)
-      nt = {}
-      for k, v in pairs(t) do
-	 nt[k] = v
-      end
-      return nt
-   end
-   -- Helper function <concat_table>
-   function ct.__ht.concat_table(a, b)
-      for k, v in pairs(b) do
-	 a[k] = v
-      end
-   end
 
    function constructor_mt.__call(self,...)
       local new_instance = {}
@@ -79,12 +74,12 @@ function mLOS.classify(ct)
       -- Load ancestors' initial fields
       if ct.ancestors then
 	 for k, v in pairs(ct.ancestors) do
-	    ct.__ht.concat_table(new_instance, v.__ht.fields)
+	    concat_table(new_instance, v.__ht.fields)
 	 end
       end
 
       -- Load our own initial fields
-      ct.__ht.concat_table(new_instance, fields)
+      concat_table(new_instance, fields)
 
       if ct.constructor then
 	 ct.constructor(new_instance,...)
@@ -115,7 +110,7 @@ function mLOS.classify(ct)
       end
       if ct.ancestors then
 	 for _, v in pairs(ct.ancestors) do
-	    ct.__ht.concat_table(method_list, v.__ht.method_list())
+	    concat_table(method_list, v.__ht.method_list())
 	 end
       end
       return method_list
