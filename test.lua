@@ -1,3 +1,10 @@
+--
+-- Copyright (c) 2012 Hacohen Xie
+-- See the file license.txt for copying permission.
+--
+
+classify=mLOS.classify
+
 Point = {
    x=0,
    y=0,

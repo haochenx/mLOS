@@ -1,5 +1,8 @@
 -- mLOS/mLOS.lua
 --
+-- Copyright (c) 2012 Hacohen Xie
+-- See the file license.txt for copying permission.
+--
 -- This file tries to implement a simple class system in lua
 --
 -- This file is created by Haochen Xie on Dec. 12, 2012 and is a part

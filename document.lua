@@ -1,5 +1,8 @@
 -- mLOS/document.lua
 --
+-- Copyright (c) 2012 Hacohen Xie
+-- See the file license.txt for copying permission.
+--
 -- This file tries to show how to work with mLOS, a Micro Lua Object
 -- System
 --
